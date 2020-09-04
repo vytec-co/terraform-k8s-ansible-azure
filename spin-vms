@@ -1,0 +1,13 @@
+az group create --name k8s-cluster --location eastus
+
+ az vm create   --resource-group k8s-cluster   --name k8s-node01   --image UbuntuLTS   --admin-username azureuser   --generate-ssh-keys
+
+az vm create -n k8s-master -g k8s-cluster \
+   --admin-username azureuser \
+    --image UbuntuLTS --size Standard_B2s \
+    --generate-ssh-keys
+
+az vm create   --resource-group k8s-cluster   --name k8s-client   --image UbuntuLTS   --admin-username azureuser   --generate-ssh-keys
+
+
+az group delete --name k8s-cluster
